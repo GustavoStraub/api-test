@@ -2,9 +2,11 @@ const express = require('express')
 const db = require('./db')
 const app = express()
 const port = 4000
+const cors = require('cors')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors('*'))
 
 const generateId = (list) => {
   let newId
@@ -26,13 +28,11 @@ app.get('/activities', (req, res) => {
 })
 
 app.post('/activities', (req, res) => {
-  console.log(req.body)
-  const { name, done } = req.body
-  console.log(name, done)
+  const { name } = req.body
   const newActivity = {
     id: generateId(db.activities),
     name,
-    done
+    done: false
   }
   db.activities.push(newActivity)
   res.send(db.activities)

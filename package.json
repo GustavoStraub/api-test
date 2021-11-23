@@ -1,7 +1,7 @@
 {
   "name": "api-test",
   "scripts": {
-    "dev": "node index"
+    "dev": "nodemon index"
   },
   "version": "1.0.0",
   "main": "index.js",
